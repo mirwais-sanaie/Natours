@@ -1,0 +1,26 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "tours management web",
+  "homepage": "https://github.com/mirwais-sanaie/Natours#readme",
+  "bugs": {
+    "url": "https://github.com/mirwais-sanaie/Natours/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirwais-sanaie/Natours.git"
+  },
+  "license": "ISC",
+  "author": "mirwais sanaie",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start:dev": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1"
+  }
+}
