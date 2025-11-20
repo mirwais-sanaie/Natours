@@ -162,5 +162,24 @@
     "duration": 322,
     "maxGroupSize": 12,
     "difficulty": "easy"
+  },
+  {
+    "id": 13,
+    "name": "newData",
+    "price": 32,
+    "duration": 322,
+    "maxGroupSize": 12,
+    "difficulty": "easy"
+  },
+  { "id": 14, "duration": 322, "maxGroupSize": 12, "difficulty": "easy" },
+  { "id": 15, "duration": 2, "maxGroupSize": 12, "difficulty": "easy" },
+  { "id": 16, "duration": 2, "maxGroupSize": 12, "difficulty": "easy" },
+  {
+    "id": 17,
+    "name": "mirwas",
+    "price": 332,
+    "duration": 2,
+    "maxGroupSize": 12,
+    "difficulty": "easy"
   }
 ]

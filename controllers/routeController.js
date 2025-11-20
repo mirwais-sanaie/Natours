@@ -17,6 +17,17 @@ exports.checkID = (req, res, next, val) => {
   next();
 };
 
+exports.checkBody = (req, res, next) => {
+  if (!req.body.name || !req.body.price) {
+    return res.status(400).json({
+      status: "fail",
+      message: "Missing name or price",
+    });
+  }
+
+  next();
+};
+
 exports.getAllTours = (req, res) => {
   res.status(200).json({
     success: true,
@@ -61,5 +72,12 @@ exports.updateTour = (req, res) => {
   res.status(200).json({
     success: true,
     message: "Update tour here...",
+  });
+};
+
+exports.deleteTour = (req, res) => {
+  res.status(204).json({
+    status: "success",
+    data: null,
   });
 };

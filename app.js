@@ -1,10 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
+const connectDB = require("./configs/database");
 const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/userRoutes");
 
 const app = express();
 app.use(express.json());
+
+connectDB();
 
 // Middleware
 if (process.env.NODE_ENV === "development") {
