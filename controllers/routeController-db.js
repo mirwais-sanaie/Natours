@@ -57,3 +57,41 @@ exports.createTour = async function (req, res) {
     });
   }
 };
+
+exports.updateTour = async function (req, res) {
+  try {
+    const id = req.params.id;
+    const tour = await Tour.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        tour,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.deleteTour = async function (req, res) {
+  const id = req.params.id;
+  try {
+    await Tour.findByIdAndDelete(id);
+    res.status(204).json({
+      status: "success",
+      data: null,
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};

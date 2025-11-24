@@ -1,13 +1,11 @@
 const express = require("express");
-const {
-  updateTour,
-  deleteTour,
-  checkID,
-} = require("./../controllers/routeController-file");
+const { checkID } = require("./../controllers/routeController-file");
 const {
   createTour,
   getAllTours,
   getTour,
+  updateTour,
+  deleteTour,
 } = require("./../controllers/routeController-db");
 
 const router = express.Router();
