@@ -1,6 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-const connectDB = require("./configs/database");
+const connectDB = require("./dev-data/data/import-dev-data");
 const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/userRoutes");
 
