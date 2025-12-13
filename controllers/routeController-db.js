@@ -105,3 +105,55 @@ exports.deleteTour = async function (req, res) {
     });
   }
 };
+
+exports.getTourStats = async function (req, res) {
+  try {
+    const tours = await Tour.aggregate([
+      {
+        $match: {
+          ratingsAverage: {
+            $lte: 5.5,
+          },
+        },
+      },
+      {
+        $group: {
+          _id: "$difficulty",
+          countTours: {
+            $sum: 1,
+          },
+          countRatings: {
+            $sum: "$ratingsQuantity",
+          },
+        },
+      },
+      {
+        $sort: {
+          countRatings: -1,
+        },
+      },
+    ]);
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        tours,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.getMonthlyPlan = async function (req, res) {
+  try {
+    const year = req.params.year * 1;
+    const plan = await Tour.aggregate([
+      {
+        $unwind: "$startDates",
+      },
+    ]);
+  } catch (error) {
+    console.log(error);
+  }
+};
