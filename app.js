@@ -16,12 +16,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-//my own
-app.use((req, res, next) => {
-  console.log("Hello from the middleware 👋");
-  next();
-});
-
 //
 
 //route to access .html .img .css or ...
