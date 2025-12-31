@@ -16,6 +16,12 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+app.use((req, res, next) => {
+  console.log(req.user);
+
+  next();
+});
+
 //
 
 //route to access .html .img .css or ...
