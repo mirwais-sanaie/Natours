@@ -9,8 +9,11 @@ const {
   getTourStats,
 } = require("./../controllers/tourController-db");
 const { protect, restrictTo } = require("../controllers/authController");
+const reviewRouter = require("./reviewRoutes");
 
 const router = express.Router();
+
+router.use("/:tourId/reviews", reviewRouter);
 
 router.route("/top-5-cheap").get(aliasTopTours, getAllTours);
 router.route("/tour-stats").get(getTourStats);
