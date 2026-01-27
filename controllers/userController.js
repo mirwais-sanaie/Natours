@@ -1,72 +1,16 @@
 const User = require("../models/userModel");
+const handleFactory = require("./handleFactory");
 
-exports.getAllUsers = async (req, res) => {
-  const users = await User.find();
-
-  res.status(200).json({
-    success: true,
-    results: users.length,
-    data: {
-      users,
-    },
-  });
+exports.getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
 };
 
-exports.getUser = async (req, res, next) => {
-  const id = req.params.id;
-  const user = await User.findById(id);
+exports.getAllUsers = handleFactory.getAll(User);
 
-  if (!user) {
-    return next(new AppError("No user found With that ID!", 404));
-  }
-  res.status(200).json({
-    status: "success",
-    data: {
-      user,
-    },
-  });
-};
+exports.getUser = handleFactory.getOne(User);
 
-exports.createUser = async (req, res, next) => {
-  const newUser = await User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
-    photo: req.body.photo,
-  });
-  res.status(201).json({
-    status: "success",
-    data: { user: newUser },
-  });
-};
-exports.updateUser = async (req, res, next) => {
-  const id = req.params.id;
-  const user = await User.findByIdAndUpdate(id, req.body, {
-    new: true,
-    runValidators: true,
-  });
+exports.createUser = handleFactory.createOne(User);
+exports.updateUser = handleFactory.updateOne(User);
 
-  if (!user) {
-    return next(new AppError("No user found With that ID!", 404));
-  }
-  res.status(200).json({
-    status: "success",
-    data: {
-      user,
-    },
-  });
-};
-
-exports.deleteUser = async (req, res, next) => {
-  const id = req.params.id;
-  const user = await User.findByIdAndDelete(id);
-
-  if (!user) {
-    return next(new AppError("No user found With that ID!", 404));
-  }
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
-};
+exports.deleteUser = handleFactory.deleteOne(User);

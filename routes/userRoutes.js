@@ -5,6 +5,7 @@ const {
   createUser,
   updateUser,
   deleteUser,
+  getMe,
 } = require("../controllers/userController");
 const authController = require("../controllers/authController");
 
@@ -19,8 +20,10 @@ router.patch("/resetPassword/:token", authController.resetPassword);
 router.patch(
   "/updatePassword",
   authController.protect,
-  authController.updatePassword
+  authController.updatePassword,
 );
+
+router.get("/me", authController.protect, getMe, getUser);
 
 router
   .route("/")
@@ -33,7 +36,7 @@ router
   .delete(
     authController.protect,
     authController.restrictTo("admin"),
-    deleteUser
+    deleteUser,
   );
 
 module.exports = router;

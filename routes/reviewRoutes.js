@@ -6,7 +6,7 @@ const router = express.Router({ mergeParams: true });
 router
   .route("/")
   .get(reviewController.getAllReviews)
-  .post(reviewController.createReview);
+  .post(reviewController.setTourUserIds, reviewController.createReview);
 
 router
   .route("/:id")
